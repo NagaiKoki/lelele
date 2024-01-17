@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --external react",
     "clean": "rm -rf dist",
-    "dev": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
+    "watch": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
     "lint": "eslint ."
   },
   "engines": {
