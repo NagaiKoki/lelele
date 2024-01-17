@@ -1,4 +1,4 @@
-import { useStore } from "../../../../src/useStore";
+import { useStore } from "lelele/src/useStore";
 
 export default function Lelele() {
   return (

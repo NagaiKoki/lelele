@@ -1,0 +1,25 @@
+{
+  "name": "lelele",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --external react",
+    "clean": "rm -rf dist",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "@types/react": ">=18.2.0",
+    "react": ">=18.2.0"
+  },
+  "devDependencies": {
+    "tsconfig": "workspace:*",
+    "typescript": "5.1.6"
+  }
+}
