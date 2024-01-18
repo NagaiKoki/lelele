@@ -1,39 +1,50 @@
-import { useSyncExternalStore } from "react";
+import { useCallback, useSyncExternalStore } from "react";
+import { type Atom } from "./atom.ts";
 
-const leleleStoreMap = new Map();
-const storeChangesMap = new Map();
+const stateMap = new Map<string, unknown>();
+const subscribeMap = new Map<string, Array<() => void>>();
 
-export const useLelele = (atom: { key: string; state: any }) => {
-  const currentState = leleleStoreMap.get(atom.key) ?? atom.state;
-
+export const useLelele = <State>({ key, state }: Atom<State>) => {
   const updateState = (newState: any) => {
-    leleleStoreMap.delete(atom.key);
-    leleleStoreMap.set(atom.key, newState);
-    const subscribers = storeChangesMap.get(atom.key);
-    subscribers.forEach((subscribe: any) => subscribe());
-  };
+    stateMap.delete(key);
+    stateMap.set(key, newState);
+    const subscribers = subscribeMap.get(key);
 
-  const subscribeStore = (subscribe: () => void) => () => {
-    if (!storeChangesMap.has(atom.key)) {
-      storeChangesMap.set(atom.key, [subscribe]);
-    } else {
-      const subscribers = storeChangesMap.get(atom.key);
-      storeChangesMap.set(atom.key, [...subscribers, subscribe]);
+    if (subscribers) {
+      subscribers.forEach((subscribe) => subscribe());
     }
   };
 
-  const getServerSnapshot = () => {
-    return currentState;
-  };
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => () => {
+      if (!subscribeMap.has(key)) {
+        subscribeMap.set(key, [onStoreChange]);
+      } else {
+        const subscribers = subscribeMap.get(key);
+        if (subscribers) {
+          subscribeMap.set(key, [...subscribers, onStoreChange]);
+        }
+      }
+    },
+    [key],
+  );
 
-  const state = useSyncExternalStore(
-    subscribeStore,
-    () => leleleStoreMap.get(atom.key) ?? currentState,
+  const getSnapshot = useCallback(() => {
+    return (stateMap.get(key) as State) ?? state;
+  }, [key, state]);
+
+  const getServerSnapshot = useCallback(() => {
+    return state;
+  }, [state]);
+
+  const atomState = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
     getServerSnapshot,
   );
 
   return {
-    state,
+    state: atomState,
     updateState,
   };
 };

@@ -1,32 +1,24 @@
-import { useStore } from "lelele/src/useStore";
+import { Component1 } from "@/components/Component1";
+import { useLelele } from "lelele/src";
+
+export const atom = {
+  key: "hoge",
+  state: {
+    name: "koki",
+  },
+};
 
 export default function Lelele() {
+  const { state, updateState } = useLelele(atom);
+
   return (
     <div>
+      <h1>page index</h1>
+      <h1>{state.name}</h1>
+      <button onClick={() => updateState({ name: "nagai" })}>click</button>
+
+      <h2>component1</h2>
       <Component1 />
-      <Component2 />
     </div>
   );
 }
-
-const Component1 = () => {
-  const [state] = useStore();
-  return (
-    <div>
-      <h2>component1</h2>
-      <p>{state.name}</p>
-    </div>
-  );
-};
-
-const Component2 = () => {
-  const [state, setState] = useStore();
-
-  return (
-    <div>
-      <h2>component2</h2>
-      {state.name}
-      <input type="text" onChange={(v) => setState({ name: v.target.value })} />
-    </div>
-  );
-};
