@@ -1,8 +1,8 @@
 import { useLelele } from "lelele/src";
-import { atom } from "../pages";
+import { userAtom } from "../pages";
 
 export const Component1 = () => {
-  const { state } = useLelele(atom);
+  const { state } = useLelele(userAtom);
   return (
     <div>
       <h2>component1</h2>
