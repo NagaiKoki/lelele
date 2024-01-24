@@ -51,6 +51,9 @@ export const useLelele = <S extends State, U extends StateUpdate<S>>({
           subscribeMap.set(key, [...subscribers, onStoreChange]);
         }
       }
+      return () => {
+        subscribeMap.delete(key);
+      };
     },
     [key],
   );
