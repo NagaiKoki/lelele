@@ -25,6 +25,6 @@ module.exports = {
   },
 
   allowCustomScopes: true,
-  skipQuestions: ["breaking", "footer"],
+  skipQuestions: ["body", "footer"],
   subjectLimit: 150,
 };
