@@ -1,11 +1,15 @@
+import { InferRestArgsFunction } from "./utility.ts";
+
 export type State = Record<string, unknown>;
 
-export type StateUpdateFunctionMap<S> = Record<string, (...args: any) => S>;
+export type StateUpdate<S extends State> = Record<
+  string,
+  (currentState: S, ...args: any) => S
+>;
 
-export type StateUpdateFunction<S> =
-  StateUpdateFunctionMap<S>[keyof StateUpdateFunctionMap<S>];
-
-export type StateUpdate<S> = (state: S) => StateUpdateFunctionMap<S>;
+export type ExposeStateUpdate<S extends State, U extends StateUpdate<S>> = {
+  [R in keyof U]: (...args: InferRestArgsFunction<U[R]>) => S;
+};
 
 export const atom = <
   S extends Record<string, unknown>,

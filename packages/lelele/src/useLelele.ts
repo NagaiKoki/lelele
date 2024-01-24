@@ -1,80 +1,62 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  useSyncExternalStore,
-} from "react";
-import type {
-  Atom,
-  State,
-  StateUpdate,
-  StateUpdateFunctionMap,
-} from "./atom.ts";
+import { useCallback, useMemo, useSyncExternalStore } from "react";
+import type { Atom, ExposeStateUpdate, State, StateUpdate } from "./atom.ts";
+import { InferRestArgsFunction } from "./utility.ts";
 
 const stateMap = new Map<string, State>();
-const updateFnsMap = new Map<string, StateUpdateFunctionMap<State>>();
-const subscribeMap = new Map<string, () => void>();
+const updateFnMap = new Map<
+  string,
+  ExposeStateUpdate<State, StateUpdate<State>>
+>();
+const subscribeMap = new Map<string, Array<() => void>>();
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const useLelele = <S extends State, U extends StateUpdate<S>>({
   key,
   initialState,
   stateUpdate,
 }: Atom<S, U>) => {
-  const [isReady, setIsReady] = useState(false);
-  const fns = useMemo(() => {
-    return stateUpdate(
-      (stateMap.get(key) as S) ?? initialState,
-    ) as ReturnType<U>;
-  }, [key, initialState, stateUpdate]);
-
-  useEffect(() => {
-    stateMap.set(key, initialState);
-
-    const fnsMap: StateUpdateFunctionMap<State> = {};
-
-    Object.entries(fns).forEach(([fnName, fn]) => {
-      const updateFunc = (...args: Parameters<typeof fn>) => {
-        const state = fn(...args);
-        stateMap.set(key, state);
-        const subscribe = subscribeMap.get(key);
-
-        if (subscribe) {
-          subscribe();
-        }
-
-        return state;
-      };
-      fnsMap[fnName] = updateFunc;
-    });
-
-    updateFnsMap.set(key, fnsMap);
-    setIsReady(true);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
-
   const updateStates = useMemo(() => {
-    const map = updateFnsMap.get(key);
-    if (isReady && map) {
-      return map as ReturnType<U>;
+    const fn = updateFnMap.get(key);
+    if (fn) {
+      return fn as ExposeStateUpdate<S, U>;
     } else {
-      return stateUpdate(initialState) as ReturnType<U>;
+      const fnsMap: ExposeStateUpdate<State, StateUpdate<State>> = {};
+
+      Object.entries(stateUpdate).forEach(([fnName, fn]) => {
+        const updateFunc = (...args: InferRestArgsFunction<typeof fn>) => {
+          const currentState = (stateMap.get(key) ?? initialState) as S;
+          const updatedState = fn(currentState, ...args);
+          stateMap.set(key, updatedState);
+          const subscribes = subscribeMap.get(key);
+
+          if (subscribes) {
+            subscribes.forEach((sub) => sub());
+          }
+
+          return updatedState;
+        };
+        fnsMap[fnName] = updateFunc;
+      });
+
+      return fnsMap as ExposeStateUpdate<S, U>;
     }
-  }, [key, isReady, stateUpdate, initialState]);
+  }, [key, stateUpdate, initialState]);
 
   const subscribe = useCallback(
     (onStoreChange: () => void) => () => {
       if (!subscribeMap.has(key)) {
-        subscribeMap.set(key, onStoreChange);
+        subscribeMap.set(key, [onStoreChange]);
+      } else {
+        const subscribers = subscribeMap.get(key);
+        if (subscribers) {
+          subscribeMap.set(key, [...subscribers, onStoreChange]);
+        }
       }
     },
     [key],
   );
 
   const getSnapshot = useCallback(() => {
-    return (stateMap.get(key) as S) ?? initialState;
+    return (stateMap.get(key) ?? initialState) as S;
   }, [key, initialState]);
 
   const getServerSnapshot = useCallback(() => {
