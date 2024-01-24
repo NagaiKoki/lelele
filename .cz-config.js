@@ -17,7 +17,7 @@ module.exports = {
     { value: "docs", name: "* docs:    docs like README change" },
     { value: "test", name: "* test:    test codes change" },
   ],
-  scopes: ["apps", "packages", "others"],
+  scopes: ["apps", "packages", ".github", "root", "others"],
   messages: {
     type: "Select the type of change that you're committing:\n",
     subject: "Write a commit message:\n",
