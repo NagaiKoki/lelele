@@ -6,7 +6,8 @@
     "build": "tsup src/index.ts --format esm,cjs --dts --external react",
     "clean": "rm -rf dist",
     "watch": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
   },
   "engines": {
     "node": ">=18.0.0"

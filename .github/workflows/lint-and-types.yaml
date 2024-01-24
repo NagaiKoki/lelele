@@ -1,0 +1,38 @@
+name: Lint and Types
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          access_token: ${{ github.token }}
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: pnpm setup
+        uses: pnpm/action-setup@v2.4.0
+        with:
+          version: 8.8.0
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: pnpm install
+        run: |
+          pnpm -r install --frozen-lockfile --strict-peer-dependencies
+
+      - name: lint
+        run: pnpm lint
+
+      - name: type-check
+        run: pnpm type-check

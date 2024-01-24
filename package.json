@@ -10,8 +10,10 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
     "test": "turbo run test",
-    "test:watch": "turbo run test:watch"
+    "test:watch": "turbo run test:watch",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -21,10 +23,20 @@
     "react": ">=18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.5.0",
+    "@commitlint/config-conventional": "^18.5.0",
+    "commitizen": "^4.3.0",
+    "cz-customizable": "^7.0.0",
     "eslint": "8.50.0",
     "prettier": "3.0.3",
     "tsup": "^8.0.1",
-    "turbo": "1.10.14"
+    "turbo": "1.10.14",
+    "husky": "^8.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   },
   "packageManager": "pnpm@8.8.0"
 }
