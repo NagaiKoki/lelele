@@ -1,2 +1,2 @@
 export * from "./useLelele.ts";
-export type * from "./atom.ts";
+export * from "./atom.ts";

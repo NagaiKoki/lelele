@@ -1,14 +1,18 @@
-import { Component1 } from "@/components/Component1";
-import { Component2 } from "@/components/Component2";
-import { Component3 } from "@/components/Component3";
+import { Box, Heading } from "@chakra-ui/react";
+import { TodoList } from "@/components/TodoList";
+import { AddTodoForm } from "@/components/AddTodoForm";
+import { Header } from "@/components/Header";
 
 export default function Lelele() {
   return (
-    <div>
-      <h1>page index</h1>
-      <Component1 />
-      <Component2 />
-      <Component3 />
-    </div>
+    <Box>
+      <Header />
+      <Box width="800px" margin="110px auto">
+        <TodoList />
+        <Box marginTop="16px">
+          <AddTodoForm />
+        </Box>
+      </Box>
+    </Box>
   );
 }

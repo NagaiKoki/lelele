@@ -7,7 +7,8 @@
     "clean": "rm -rf dist",
     "watch": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
     "lint": "eslint .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "vitest run"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -20,8 +21,9 @@
     "react": ">=18.2.0"
   },
   "devDependencies": {
-    "@packages/tsconfig": "workspace:*",
     "@packages/eslint-config": "workspace:*",
+    "@packages/tsconfig": "workspace:*",
+    "@testing-library/react": "^14.1.2",
     "typescript": "5.1.6"
   }
 }

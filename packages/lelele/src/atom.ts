@@ -2,18 +2,27 @@ import { InferRestArgsFunction } from "./utility.ts";
 
 export type State = Record<string, unknown>;
 
-export type StateUpdate<S extends State> = Record<
+export type StateUpdate<State> = Record<
   string,
-  (currentState: S, ...args: any) => S
+  (currentState: State, ...args: any) => State
 >;
 
-export type ExposeStateUpdate<S extends State, U extends StateUpdate<S>> = {
-  [R in keyof U]: (...args: InferRestArgsFunction<U[R]>) => S;
+export type ExposeStateUpdate<State, U extends StateUpdate<State>> = {
+  [R in keyof U]: (...args: InferRestArgsFunction<U[R]>) => State;
+};
+
+export type Atom<State, U extends StateUpdate<State>> = {
+  key: string;
+  initialState: State;
+  stateUpdate: U;
 };
 
 export const atom = <
-  S extends Record<string, unknown>,
-  U extends StateUpdate<S>,
+  S extends State,
+  U extends Record<string, (currentState: S, ...args: any) => S> = Record<
+    string,
+    (currentState: S, ...args: any) => S
+  >,
 >({
   key,
   initialState,
@@ -22,15 +31,10 @@ export const atom = <
   key: string;
   initialState: S;
   stateUpdate: U;
-}) => ({
-  key,
-  initialState,
-  stateUpdate,
-});
-
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
-export type Atom<S extends State, U extends StateUpdate<S>> = {
-  key: string;
-  initialState: S;
-  stateUpdate: U;
+}): Atom<S, U> => {
+  return {
+    key,
+    initialState,
+    stateUpdate,
+  };
 };

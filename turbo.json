@@ -6,6 +6,7 @@
     },
     "lint": {},
     "type-check": {},
+    "test": {},
     "dev": {
       "cache": false,
       "persistent": true
