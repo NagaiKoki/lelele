@@ -11,7 +11,6 @@ export type ExposeStateUpdate<State, U extends StateUpdate<State>> = {
   [R in keyof U]: (...args: InferRestArgsFunction<U[R]>) => State;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export type Atom<State, U extends StateUpdate<State>> = {
   key: string;
   initialState: State;

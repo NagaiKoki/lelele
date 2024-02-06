@@ -73,7 +73,7 @@ export const useLelele = <S extends State, U extends StateUpdate<S>>({
   );
 
   return {
-    state: atomState,
+    ...atomState,
     ...updateStates,
   };
 };
