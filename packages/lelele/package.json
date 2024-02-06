@@ -1,0 +1,47 @@
+{
+  "name": "lelele",
+  "version": "0.0.1",
+  "description": "light weight global state management for React",
+  "homepage": "https://github.com/NagaiKoki/lelele",
+  "bin": {
+    "email": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --external react",
+    "clean": "rm -rf dist",
+    "watch": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "react",
+    "state management",
+    "hooks"
+  ],
+  "author": "Koki Nagai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NagaiKoki/lelele",
+    "directory": "packages/lelele"
+  },
+  "bugs": {
+    "url": "https://github.com/NagaiKoki/lelele/issues"
+  },
+  "peerDependencies": {
+    "@types/react": ">=18.2.0",
+    "react": ">=18.2.0"
+  },
+  "devDependencies": {
+    "@packages/eslint-config": "workspace:*",
+    "@packages/tsconfig": "workspace:*",
+    "@testing-library/react": "^14.1.2",
+    "typescript": "5.1.6"
+  },
+  "prepare": "husky install"
+}
