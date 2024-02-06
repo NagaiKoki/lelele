@@ -11,13 +11,15 @@ export const AddTodoForm = () => {
 
   return (
     <Box>
-      <Text fontWeight="bold">Add Todo</Text>
-      <Flex marginTop="4px" gap="8px">
-        <Input
-          value={todo.title}
-          onChange={(v) => setTodo({ title: v.target.value })}
-        />
+      <Input
+        height="45px"
+        placeholder="homework..."
+        value={todo.title}
+        onChange={(v) => setTodo({ title: v.target.value })}
+      />
+      <Flex justifyContent="flex-end">
         <Button
+          marginTop="8px"
           onClick={() => {
             addTodo({
               title: todo.title,
