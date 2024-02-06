@@ -1,6 +1,6 @@
 import { todoAtom } from "@/store/todo";
 import { Todo } from "@/types/todo";
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Input } from "@chakra-ui/react";
 import { useLelele } from "lelele/src";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";

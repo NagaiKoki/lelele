@@ -8,10 +8,8 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
 } from "@chakra-ui/react";
 import { useLelele } from "lelele/src";
 import { ProfileForm } from "./ProfileForm";

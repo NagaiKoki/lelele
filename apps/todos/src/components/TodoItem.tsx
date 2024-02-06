@@ -1,4 +1,4 @@
-import { Box, Checkbox, Text } from "@chakra-ui/react";
+import { Checkbox, Text } from "@chakra-ui/react";
 
 type Props = {
   title: string;

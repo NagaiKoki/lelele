@@ -2,8 +2,6 @@ import { profileAtom } from "@/store/profile";
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Box,
   Input,
   Flex,
