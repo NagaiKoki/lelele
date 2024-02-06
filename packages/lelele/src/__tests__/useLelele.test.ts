@@ -27,13 +27,13 @@ describe("useLelele", () => {
   });
   test("return state which is equal to initialState value", () => {
     const { result } = renderHook(() => useLelele(userAtom));
-    expect(result.current.state).toEqual(initialState);
+    expect(result.current.name).toEqual(initialState.name);
   });
 
   test("change name if onChangeName executes", () => {
     const { result, rerender } = renderHook(() => useLelele(userAtom));
 
-    expect(result.current.state.name).toEqual("");
+    expect(result.current.name).toEqual("");
 
     const updateName = "Koki Nagai";
     act(() => {
@@ -41,6 +41,6 @@ describe("useLelele", () => {
     });
     rerender();
 
-    expect(result.current.state.name).toBe(updateName);
+    expect(result.current.name).toBe(updateName);
   });
 });
