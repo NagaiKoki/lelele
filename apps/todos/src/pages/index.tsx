@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { TodoList } from "@/components/TodoList";
 import { AddTodoForm } from "@/components/AddTodoForm";
 import { Header } from "@/components/Header";
