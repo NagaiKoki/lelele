@@ -7,7 +7,6 @@ export default function Lelele() {
   return (
     <Box>
       <Header />
-      <Header />
       <Box width="800px" margin="110px auto">
         <TodoList />
         <Box marginTop="16px">

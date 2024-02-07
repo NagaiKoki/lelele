@@ -1,4 +1,4 @@
-import { atom } from "lelele/src";
+import { atom } from "lelele";
 import type { Profile } from "@/types/profile";
 
 export const profileAtom = atom({

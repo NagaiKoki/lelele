@@ -1,7 +1,7 @@
 import { TodoItem } from "@/components/TodoItem";
 import { todoAtom } from "@/store/todo";
 import { Box, Button, List, Text } from "@chakra-ui/react";
-import { useLelele } from "lelele/src";
+import { useLelele } from "lelele";
 
 export const TodoList = () => {
   const { targetDone, todoItems, addTargetDone, deleteDoneTodo } =

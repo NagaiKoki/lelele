@@ -1,4 +1,4 @@
-import { atom } from "lelele/src";
+import { atom } from "lelele";
 import { Todo } from "@/types/todo";
 import { v4 as uuid } from "uuid";
 
