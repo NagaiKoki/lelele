@@ -31,11 +31,6 @@
   "bugs": {
     "url": "https://github.com/NagaiKoki/lelele/issues"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/index.js"
-    }
-  },
   "files": [
     "./dist"
   ],

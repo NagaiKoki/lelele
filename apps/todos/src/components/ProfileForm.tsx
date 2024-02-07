@@ -7,7 +7,7 @@ import {
   Flex,
   Button,
 } from "@chakra-ui/react";
-import { useLelele } from "lelele";
+import { useLelele } from "lelele/src";
 import { useCallback, useState } from "react";
 
 type Props = {

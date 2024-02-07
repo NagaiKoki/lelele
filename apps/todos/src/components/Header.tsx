@@ -11,7 +11,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useLelele } from "lelele";
+import { useLelele } from "lelele/src";
 import { ProfileForm } from "./ProfileForm";
 
 export const Header = () => {
