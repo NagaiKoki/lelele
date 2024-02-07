@@ -63,7 +63,7 @@ const Component = () => {
 
 ## demo
 
-You can try lelele by demo app. After following command, access http://locahost:3000
+You can try lelele from [here](https://lelele-todos.vercel.app/) or, access http://locahost:3000 after following command.
 
 ```sh
 $ git clone git@github.com:NagaiKoki/lelele.git
