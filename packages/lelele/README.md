@@ -1,8 +1,4 @@
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
-
 ## Light Weight Global State Management for React (experimental)
-
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 "lelele" is a light weight global state management for React. It's pretty simple interface and easy to use. TypeScript first.
 
@@ -38,7 +34,7 @@ const userAtom = atom({
     name: "koki",
     age: 100,
   } as { name: string; age: number },
-  updateState: {
+  stateUpdate: {
     onChangeName: (currentState, name: string) => ({
       ...currentState,
       name,
@@ -67,7 +63,7 @@ const Component = () => {
 
 ## demo
 
-You can try lelele by demo app. After following command, access http://locahost:3000
+You can try lelele from [here](https://lelele-todos.vercel.app/) or, access http://locahost:3000 after following command.
 
 ```sh
 $ git clone git@github.com:NagaiKoki/lelele.git

@@ -1,7 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
-    "build": {
+    "lelele#build": {},
+    "todos#build": {
+      "dependsOn": ["lelele#build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
