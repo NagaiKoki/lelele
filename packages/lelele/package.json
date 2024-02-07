@@ -1,6 +1,6 @@
 {
   "name": "lelele",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "light weight global state management for React",
   "homepage": "https://github.com/NagaiKoki/lelele",
   "bin": {
@@ -32,6 +32,15 @@
   },
   "bugs": {
     "url": "https://github.com/NagaiKoki/lelele/issues"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
   },
   "peerDependencies": {
     "@types/react": ">=18.2.0",
