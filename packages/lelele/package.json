@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "light weight global state management for React",
   "homepage": "https://github.com/NagaiKoki/lelele",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --external react",
@@ -31,14 +32,13 @@
     "url": "https://github.com/NagaiKoki/lelele/issues"
   },
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
+      "import": "./dist/index.js"
     }
   },
+  "files": [
+    "./dist"
+  ],
   "peerDependencies": {
     "@types/react": ">=18.2.0",
     "react": ">=18.2.0"
