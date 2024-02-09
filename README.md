@@ -1,12 +1,12 @@
 ## Light Weight Global State Management for React
 
-"lelele" is a light weight global state management for React. It's pretty simple interface and easy to use. TypeScript first.
+**lelele** is a light weight global state management for React. It's pretty simple interface and light weight. TypeScript first.
 
-You feel like `@reduxjs/toolkit`, but lelele is bottom up approach to create state store and enable to make multiple stores called "atom".
+You feel like `@reduxjs/toolkit`, but lelele is bottom up approach to create state store and enable to make multiple stores called **atom**.
 
-- Minified size is just 1.3KB
-- No Provider
-- Simple API, just useLelele and atom
+- Minified size is just **1.3KB**
+- **No Provider**
+- **Simple API**, just `useLelele` and `atom`
 
 ## Install
 
